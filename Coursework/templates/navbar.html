@@ -1,0 +1,66 @@
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class = "dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recipes<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ url_for('recipes') }}">All</a></li>
+					<div class="divider"></div>
+					<li><a href="{{ url_for('category', category = "breakfast") }}">Breakfast</a></li>
+					<li><a href="{{ url_for('category', category = "lunch") }}">Lunch</a></li>
+					<li><a href="{{ url_for('category', category = "beverages") }}">Beverages</a></li>
+					<li><a href="{{ url_for('category', category = "appetizers") }}">Appetizers</a></li>
+					<li><a href="{{ url_for('category', category = "soups") }}">Soups</a></li>
+					<li><a href="{{ url_for('category', category = "salads") }}">Salads</a></li>
+					<li><a href="{{ url_for('category', category = "main dishes") }}">Main Dishes</a></li>
+					<li><a href="{{ url_for('category', category = "desserts") }}">Desserts</a></li>
+					<li><a href="{{ url_for('category', category = "baking") }}">Baking</a></li>
+				</ul></li>
+			</ul>
+
+			<form class="navbar-form navbar-right" role="search" action="{{ url_for('searchinput') }}" method="post">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Search for a recipe" name="newsearch"></input>
+				</div>
+				<button type="submit" class="btn btn-default">Go</button>
+			</form>
+				
+			<ul class="nav navbar-nav navbar-right">
+				{% if loggedin %}
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ username }}<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="{{ url_for('share') }}">Share a recipe</a></li>
+					<li><a href="{{ url_for('myaccount') }}">My Recipes</a></li>
+					<li><a href="{{ url_for('favourites') }}">My Favourites</a></li>
+					<li><a href="{{ url_for('logout') }}">Log out</a></li>
+				</ul>
+				</li>
+				{% else %}
+				<form class="navbar-form" action="{{ url_for('login') }}" style="display: inline-block">
+				<li>
+					<button type="submit" class="btn btn-default">Log in</button>
+				</li>
+				</form>
+				<form class="navbar-form" action="{{ url_for('signup') }}" style="display: inline-block">
+				<li>
+					<button type="submit" class="btn btn-default">Sign Up</button>
+				</li>
+				</form>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>
+			

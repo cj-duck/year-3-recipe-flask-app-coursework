@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container"><br>
+		{% include "navbar.html" %}
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6">
+					<form name="login_form" action="" method="post">
+						<div class-"form-group">
+							<h2>Log in</h2><br>
+							<input placeholder="Username" name="username"></input><br><br>
+							<input type="password" placeholder="Password" name="password"><br><br>
+							<button type="submit" class="btn" name="button" value="login">Enter</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+</html>

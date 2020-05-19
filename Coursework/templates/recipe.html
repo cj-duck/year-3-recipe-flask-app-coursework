@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container"><br>
+		{% include "navbar.html" %}
+		<div class="container">
+			{% for item in recipes %}
+				{% if item.title == recipe %}
+				<h2>{{ item.title }}</h2>
+				{% if loggedin %}
+				<form action="" method="post" style="display: inline-block">
+					<button type="submit" name="favourite" value="{{ item._id }}" class="btn btn-warning"><span class="glyphicon glyphicon-star"></span> Favourite</button>
+				</form>
+				{% endif %}
+				<h4>Posted by: <a href="{{ url_for('users', user = item.user) }}">{{ item.user }}</a></h4>
+				<h4>{{ item.views }} views</h4><br>
+				<img src="{{ item.img }}"><br><br>
+				<h3>Description</h3>
+				<p>{{ item.description }}</p><br>
+				<h3>Ingredients</h3>
+				<p>{{ item.ingredients.replace('\r\n', '<br>') | safe }}</p><br>
+				<h3>Method</h3>
+				<p>{{ item.method.replace('\r\n', '<br>') | safe }}</p><br>
+				{% endif %}
+			{% endfor %}
+		</div>
+		</div>
+	</body>
+</html>

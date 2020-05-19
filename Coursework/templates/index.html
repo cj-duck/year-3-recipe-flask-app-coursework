@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container"><br>
+		{% include "navbar.html" %}
+			<div class="container" style="text-align: center;">
+				<h2>Student Recipe Sharing</h2>
+				<p>Welcome to my recipe sharing website. This website is an easy way for students to manage, share and discover new recipes!</p><br>
+				{% if loggedin %}
+				<form action="{{ url_for('share') }}">
+					<button type="submit" class="btn btn-success"> Share a recipe now! </button>
+				</form>
+				{% else %}
+				<form action="{{ url_for('signup') }}">
+					<button type="submit" class="btn btn-success"> Sign up to share a recipe! </buton>
+				</form>
+				{% endif %}
+			</div>
+		</div>
+	</body>
+</html>
